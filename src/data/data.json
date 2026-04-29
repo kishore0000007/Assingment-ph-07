@@ -17,7 +17,7 @@
     "picture": "https://i.pravatar.cc/150?img=2",
     "email": "jane@example.com",
     "days_since_contact": 5,
-    "status": " On-Track",
+    "status": "On-Track",
     "tags": ["Work", "Teammate"],
     "bio": "Works in the same department.",
     "goal": 10,

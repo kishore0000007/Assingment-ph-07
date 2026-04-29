@@ -24,35 +24,34 @@ export default function Footer() {
           <Image
             src="/facebook.png"
             alt="Facebook"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="bg-white p-2 rounded-full cursor-pointer hover:scale-110 transition"
           />
 
           <Image
             src="/instagram.png"
             alt="Instagram"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="bg-white p-2 rounded-full cursor-pointer hover:scale-110 transition"
           />
 
           <Image
             src="/twitter.png"
             alt="Twitter"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="bg-white p-2 rounded-full cursor-pointer hover:scale-110 transition"
           />
 
         </div>
 
-        {/* Divider */}
+        
         <div className="border-t border-gray-500 my-6"></div>
 
-        {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300 gap-3">
-          
+
           <p>© 2026 KeenKeeper. All rights reserved.</p>
 
           <div className="flex gap-5">

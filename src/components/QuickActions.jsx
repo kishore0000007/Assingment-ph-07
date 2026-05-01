@@ -9,15 +9,17 @@ export default function QuickActions({ friend }) {
     const existing = JSON.parse(localStorage.getItem("timeline")) || [];
 
     const newEntry = {
-      id: Date.now(),
+      id: crypto.randomUUID(),           // ✅ unique, no collision
+      friendId: friend.id,
       friendName: friend.name,
-      type,
-      date: new Date().toLocaleString(),
+      type,                              // "Call" | "Text" | "Video"
+      date: new Date().toLocaleDateString("en-US", {
+        month: "short", day: "numeric", year: "numeric",
+      }),
+      timestamp: Date.now(),             // ✅ for reliable sorting
     };
 
     localStorage.setItem("timeline", JSON.stringify([newEntry, ...existing]));
-
-    // ✅ Toast message
     toast.success(`${type} logged with ${friend.name}`);
   };
 
@@ -28,15 +30,12 @@ export default function QuickActions({ friend }) {
       </h3>
 
       <div className="grid grid-cols-3 gap-3">
-
         <button
           onClick={() => addToTimeline("Call")}
           className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <PhoneCall className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
-            Call
-          </span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Call</span>
         </button>
 
         <button
@@ -44,9 +43,7 @@ export default function QuickActions({ friend }) {
           className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <MessageSquare className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
-            Text
-          </span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Text</span>
         </button>
 
         <button
@@ -54,11 +51,8 @@ export default function QuickActions({ friend }) {
           className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <Video className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
-            Video
-          </span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Video</span>
         </button>
-
       </div>
     </div>
   );

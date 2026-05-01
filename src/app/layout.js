@@ -34,12 +34,10 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
-        {/* Footer */}
         <Footer />
 
-        {/* Toast */}
         <ToastContainer
-          position="top-right"   // 🔥 better for mobile (doesn’t block navbar)
+          position="top-right"
           autoClose={2000}
           hideProgressBar={false}
           newestOnTop

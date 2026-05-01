@@ -2,6 +2,8 @@
 import Image from "next/image";
 import QuickActions from "@/components/QuickActions";
 import { Clock, Archive, Trash2, Pencil } from "lucide-react";
+ import { getStatusStyle } from "@/utils/statusStyle";
+
 
 export default async function FriendDetails({ params }) {
   const { id: rawId } = await params;
@@ -48,20 +50,10 @@ export default async function FriendDetails({ params }) {
               </h2>
 
               <div className="flex flex-col items-center gap-1.5">
-                <span
-                  className={`text-xs px-3 py-0.5 rounded-full font-medium ${
-                    friend.status === "Overdue"
-                      ? "text-red-600 bg-red-100"
-                      : friend.status === "Almost-Due"
-                      ? "text-yellow-600 bg-yellow-100"
-                      : friend.status === "On-Track"
-                      ? "bg-green-100 text-green-700"
-                      : ""
-                  }`}
-                >
-                  {friend.status}
-                </span>
-
+                
+<span className={`text-xs px-3 py-0.5 rounded-full font-medium ${getStatusStyle(friend.status)}`}>
+  {friend.status}
+</span>
                 {friend.group && (
                   <span className="text-xs px-3 py-0.5 rounded-full bg-[#244D3F] text-white font-medium">
                     {friend.group}

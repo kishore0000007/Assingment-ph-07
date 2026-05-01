@@ -113,8 +113,7 @@ export default function Stats() {
                   <p className="text-sm text-[#94A3B8]">Loading...</p>
                 </div>
               )}
-
-              {/* Legend */}
+ 
               <div className="flex justify-center gap-6 mt-3">
                 {COLORS.map((item) => (
                   <div key={item.name} className="flex items-center gap-1.5">
@@ -134,7 +133,7 @@ export default function Stats() {
               </div>
             </div>
 
-            {/* Right: placeholder */}
+           
             <div className="p-6 flex items-center justify-center">
               <p className="text-3xl text-[#C4CDD6]">More stats coming soon</p>
             </div>

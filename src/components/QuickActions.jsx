@@ -1,6 +1,7 @@
-    "use client";
+     "use client";
 
 import { PhoneCall, MessageSquare, Video } from "lucide-react";
+import { toast } from "react-toastify";
 
 export default function QuickActions({ friend }) {
 
@@ -16,8 +17,8 @@ export default function QuickActions({ friend }) {
 
     localStorage.setItem("timeline", JSON.stringify([newEntry, ...existing]));
 
-    // trigger update for timeline page
-    window.dispatchEvent(new Event("timelineUpdated"));
+    // ✅ Toast message
+    toast.success(`${type} logged with ${friend.name}`);
   };
 
   return (
@@ -30,26 +31,32 @@ export default function QuickActions({ friend }) {
 
         <button
           onClick={() => addToTimeline("Call")}
-          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] transition-all group"
+          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <PhoneCall className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Call</span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
+            Call
+          </span>
         </button>
 
         <button
           onClick={() => addToTimeline("Text")}
-          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E3] hover:border-[#244D3F] hover:bg-[#F0F7F4] transition-all group"
+          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <MessageSquare className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Text</span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
+            Text
+          </span>
         </button>
 
         <button
           onClick={() => addToTimeline("Video")}
-          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] transition-all group"
+          className="flex flex-col items-center gap-2 py-4 rounded-xl border border-[#E9E9E9] hover:border-[#244D3F] hover:bg-[#F0F7F4] group"
         >
           <Video className="w-5 h-5 text-[#64748B] group-hover:text-[#244D3F]" />
-          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">Video</span>
+          <span className="text-xs text-[#64748B] group-hover:text-[#244D3F]">
+            Video
+          </span>
         </button>
 
       </div>

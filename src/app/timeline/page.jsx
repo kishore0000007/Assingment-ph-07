@@ -15,7 +15,7 @@ export default function Timeline() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("timeline")) || [];
-    setEvents(data);
+    setEvents(data.reverse()); // newest first
   }, []);
 
   const filteredEvents =
@@ -24,23 +24,24 @@ export default function Timeline() {
       : events.filter((e) => e.type === filter);
 
   return (
-    <div className="w-full flex flex-col items-center py-10 ">
+    <div className="min-h-screen bg-[#F8FAFA] flex justify-center py-12">
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-xl">
 
         <h1 className="text-xl font-semibold text-[#1a2e29] mb-6 text-center">
           Timeline
         </h1>
 
-        <div className="flex gap-3 mb-6 justify-center">
+        {/* Filter */}
+        <div className="flex gap-3 mb-8 justify-center">
           {["All", "Call", "Text", "Video"].map((type) => (
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-4 py-1.5 rounded-lg text-sm border ${
+              className={`px-4 py-1.5 rounded-lg text-sm border transition ${
                 filter === type
                   ? "bg-[#244D3F] text-white border-[#244D3F]"
-                  : "bg-white text-[#64748B] border-[#E9E9E9]"
+                  : "bg-white text-[#64748B] border-[#E9E9E9] hover:bg-[#F0F7F4]"
               }`}
             >
               {type}
@@ -48,22 +49,24 @@ export default function Timeline() {
           ))}
         </div>
 
-        {filteredEvents.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center py-6">
-            No activity found
-          </p>
-        ) : (
-          <div className="space-y-2 ">
-            {filteredEvents.map((e) => (
+        {/* Timeline Card Container */}
+        <div className="bg-white border border-[#E9E9E9] rounded-xl p-4 space-y-3 shadow-sm">
+
+          {filteredEvents.length === 0 ? (
+            <p className="text-sm text-gray-400 text-center py-6">
+              No activity found
+            </p>
+          ) : (
+            filteredEvents.map((e) => (
               <div
                 key={e.id}
-                className="flex items-start gap-3 bg-[#F8FAFC] border border-[#E9E9E9] rounded-lg px-4 py-3"
+                className="flex items-start gap-3 border border-[#E9E9E9] rounded-lg px-4 py-3 hover:bg-[#F8FAFC] transition"
               >
                 <div className="mt-1">
                   {iconMap[e.type]}
                 </div>
 
-                <div>
+                <div className="flex-1">
                   <p className="text-sm text-[#1a2e29]">
                     <span className="font-medium">{e.type}</span> with{" "}
                     <span className="font-medium">{e.friendName}</span>
@@ -74,9 +77,10 @@ export default function Timeline() {
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            ))
+          )}
+
+        </div>
 
       </div>
     </div>

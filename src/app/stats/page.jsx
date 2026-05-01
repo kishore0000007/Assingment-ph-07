@@ -1,4 +1,4 @@
-     "use client";
+      "use client";
 
 import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
@@ -72,22 +72,23 @@ export default function Stats() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFA] px-8 py-10">
+    <div className="min-h-screen bg-[#F8FAFA] px-4 sm:px-8 py-10">
       <div className="max-w-5xl mx-auto">
 
-        <h1 className="text-4xl font-bold text-[#1a2e29] mb-6">
+        <h1 className="text-2xl sm:text-4xl font-bold text-[#1a2e29] mb-6">
           Friendship Analytics
         </h1>
 
         <div className="bg-white border border-[#E9E9E9] rounded-2xl shadow-sm">
-          <div className="grid grid-cols-2">
+          {/* ✅ stack vertically on mobile, side-by-side on md+ */}
+          <div className="grid grid-cols-1 md:grid-cols-2">
 
-            {/* Left: chart panel */}
-            <div className="p-6 border-r border-[#E9E9E9]">
+            {/* Chart panel */}
+            <div className="p-6 md:border-r border-b md:border-b-0 border-[#E9E9E9]">
               <p className="text-xs text-[#64748B] mb-2">By Interaction Type</p>
 
               {mounted ? (
-                <div style={{ width: "100%", height: 220 }}>
+                <div className="w-full h-[220px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -109,11 +110,11 @@ export default function Stats() {
                   </ResponsiveContainer>
                 </div>
               ) : (
-                <div style={{ width: "100%", height: 220 }} className="flex items-center justify-center">
+                <div className="w-full h-[220px] flex items-center justify-center">
                   <p className="text-sm text-[#94A3B8]">Loading...</p>
                 </div>
               )}
- 
+
               <div className="flex justify-center gap-6 mt-3">
                 {COLORS.map((item) => (
                   <div key={item.name} className="flex items-center gap-1.5">
@@ -133,9 +134,9 @@ export default function Stats() {
               </div>
             </div>
 
-           
+            {/* Right panel */}
             <div className="p-6 flex items-center justify-center">
-              <p className="text-3xl text-[#C4CDD6]">More stats coming soon</p>
+              <p className="text-xl sm:text-3xl text-[#C4CDD6]">More stats coming soon</p>
             </div>
 
           </div>
